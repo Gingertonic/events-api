@@ -13,7 +13,14 @@ module Api::V1
 
         def update
             @event.update(event_params)
+            # byebug
             render json: @event
+        end
+
+        def create 
+            @new_event = Event.create(event_params)
+            # byebug
+            render json: @new_event
         end
 
         private
@@ -22,7 +29,7 @@ module Api::V1
         end
 
         def event_params
-            params.permit(:header, :date, :info, :backgroundColor, :textColor)
+            params.permit(:id, :header, :date, :info, :backgroundColor, :textColor)
         end
     end
 end
